@@ -1,4 +1,5 @@
 import { Router } from "./app/router";
+import { HomePage } from "./pages/HomePage";
 
 const root = document.getElementById("app");
 if (!(root instanceof HTMLElement)) {
@@ -7,15 +8,10 @@ if (!(root instanceof HTMLElement)) {
 
 const router = new Router(root);
 
-router.add("/", () => newDiv("Main"));
-router.add("/detail", () => newDiv("Detail"));
+// router.add("/", () => newDiv("Main"));
+// router.add("/detail", () => newDiv("Detail"));
+router.add("/home", new HomePage());
 
-const newDiv = (title: string) => {
-  const h1 = document.createElement("h1");
-  h1.textContent = title;
-  return h1;
-
-}
 
 document.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;

@@ -1,6 +1,8 @@
+import type { Page } from "./page";
+
 type Route = {
     path: string;
-    render: () => HTMLElement;
+    render: Page;
 };
 
 export class Router {
@@ -12,7 +14,7 @@ export class Router {
         window.addEventListener("popstate", () => this.route());
     }
 
-    add(path: string, render: () => HTMLElement) {
+    add(path: string, render: Page) {
         this.routes.push({ path, render });
     }
 
@@ -28,7 +30,7 @@ export class Router {
         this.root.innerHTML = "";
 
         const page = route
-            ? route.render()
+            ? route.render.element
             : this.createNotFoundPage();
 
         this.root.append(page);
