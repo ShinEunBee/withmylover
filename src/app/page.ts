@@ -5,15 +5,15 @@ export class Page {
         this.tag = tag;
     }
 
-    get element(){
+    get element() {
         return this.tag;
     }
 
     mount() {
-
+        console.log("monnt", this.element);
     }
 
     unmount() {
-
+        console.log("unmonnt", this.element);
     }
 }

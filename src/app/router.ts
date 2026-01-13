@@ -2,44 +2,44 @@ import type { Page } from "./page";
 
 type Route = {
     path: string;
-    render: Page;
+    page: Page;
 };
 
 export class Router {
     private routes: Route[] = [];
     private root: HTMLElement;
+    private currentPage: Page | null = null;
+    private errorPage: Page;
 
-    constructor(root: HTMLElement) {
+    constructor(root: HTMLElement, errorPage: Page) {
         this.root = root;
-        window.addEventListener("popstate", () => this.route());
+        this.errorPage = errorPage;
+
+        window.addEventListener("popstate", () => {
+            this.route(location.pathname);
+        });
     }
 
-    add(path: string, render: Page) {
-        this.routes.push({ path, render });
+    add(path: string, page: Page) {
+        this.routes.push({ path, page });
     }
 
     navigate(path: string) {
         history.pushState({}, "", path);
-        this.route();
+        this.route(path);
     }
 
-    route() {
-        const currentPath = location.pathname;
-        const route = this.routes.find(r => r.path === currentPath) || this.routes.find(r => r.path === "/404");
+    route(path: string) {
+        const route = this.routes.find(r => r.path === path);
+        
+        if (this.currentPage) {
+            this.currentPage.unmount();
+            this.root.innerHTML = "";
+        }
 
-        this.root.innerHTML = "";
-
-        const page = route
-            ? route.render.element
-            : this.createNotFoundPage();
-
-        this.root.append(page);
-    }
-
-    private createNotFoundPage(): HTMLElement {
-        const h1 = document.createElement("h1");
-        h1.textContent = "404 Not Found";
-        return h1;
+        this.currentPage = route ? route.page : this.errorPage;
+        this.currentPage.mount();
+        this.root.append(this.currentPage.element);
     }
 
 }

@@ -1,13 +1,12 @@
 import { Page } from "../app/page";
 
-export class HomePage extends Page {
-    constructor() {
+export class AboutPage extends Page{
+    constructor(){
         const container = document.createElement("div");
         container.innerHTML = `
-            <h1>Home</h1>
-            <p>환영합니당</p>
+            <h1>About</h1>
+            <p>SPA 만들어봐요</p>
             <a href="/" data-link="/">Home</a>
-            <a href="/about" data-link="/about">About</a>
         `;
 
         super(container);
