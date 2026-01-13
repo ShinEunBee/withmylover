@@ -25,7 +25,7 @@ export class Router {
 
     route() {
         const currentPath = location.pathname;
-        const route = this.routes.find(r => r.path === currentPath);
+        const route = this.routes.find(r => r.path === currentPath) || this.routes.find(r => r.path === "/404");
 
         this.root.innerHTML = "";
 

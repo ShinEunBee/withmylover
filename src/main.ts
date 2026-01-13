@@ -1,4 +1,5 @@
 import { Router } from "./app/router";
+import { ErrorPage } from "./pages/ErrorPage";
 import { HomePage } from "./pages/HomePage";
 
 const root = document.getElementById("app");
@@ -11,6 +12,7 @@ const router = new Router(root);
 // router.add("/", () => newDiv("Main"));
 // router.add("/detail", () => newDiv("Detail"));
 router.add("/home", new HomePage());
+router.add("/404", new ErrorPage());
 
 
 document.addEventListener("click", (e) => {
