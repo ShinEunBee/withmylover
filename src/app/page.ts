@@ -1,5 +1,5 @@
 export class Page {
-    private tag: HTMLElement;
+    protected tag: HTMLElement;
 
     constructor(tag: HTMLElement) {
         this.tag = tag;
