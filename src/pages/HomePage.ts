@@ -1,8 +1,9 @@
 import { Page } from "../app/page";
+import type { Router } from "../app/router";
 import { Button } from "../components/button";
 
 export class HomePage extends Page {
-    constructor() {
+    constructor(router: Router) {
         const container = document.createElement("div");
 
         container.innerHTML = `
@@ -16,7 +17,7 @@ export class HomePage extends Page {
             this.tag,
             "시작하기",
             () => {
-                console.log("시작 버튼 클릭");
+                router.navigate("/photo-select");
             }
         );
 
