@@ -18,8 +18,8 @@ export class Button {
         this.className = className;
         
         this.button = document.createElement("button");
-        this.button.textContent = text;
-        if (className) this.button.classList.add(className);
+        this.button.textContent = this.text;
+        if (this.className) this.button.classList.add(this.className);
     }
 
     mount() {
