@@ -11,9 +11,9 @@ if (!(root instanceof HTMLElement)) {
 
 const router = new Router(root, new ErrorPage());
 
-router.add("/", new HomePage(router));
-router.add("/about", new AboutPage());
-router.add("/photo-select", new PhotoSelectPage());
+router.add("/", () => new HomePage(router));
+router.add("/about", () => new AboutPage());
+router.add("/photo-select", () => new PhotoSelectPage());
 
 router.route(location.pathname);
 

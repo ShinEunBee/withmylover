@@ -2,7 +2,7 @@ import type { Page } from "./page";
 
 type Route = {
     path: string;
-    page: Page;
+    page: () => Page;
 };
 
 export class Router {
@@ -20,7 +20,7 @@ export class Router {
         });
     }
 
-    add(path: string, page: Page) {
+    add(path: string, page:  () => Page) {
         this.routes.push({ path, page });
     }
 
@@ -37,7 +37,7 @@ export class Router {
             this.root.innerHTML = "";
         }
 
-        this.currentPage = route ? route.page : this.errorPage;
+        this.currentPage = route ? route.page() : this.errorPage;
         this.currentPage.mount();
         this.root.append(this.currentPage.element);
     }
