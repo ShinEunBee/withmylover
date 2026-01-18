@@ -1,11 +1,13 @@
 import { Page } from "../app/page";
 import { Button } from "../components/button";
+import type { Router } from "../app/router";
+import type { App } from "../app/app";
 
 export class PhotoSelectPage extends Page {
     private fileInput: HTMLInputElement;
     private previewImg: HTMLImageElement;
 
-    constructor() {
+    constructor(router: Router, app: App) {
         const container = document.createElement("div");
 
         container.innerHTML = `
@@ -32,11 +34,22 @@ export class PhotoSelectPage extends Page {
             }
         );
 
+        const nextButton = new Button(
+            this.tag,
+            "다음으로",
+            () => {
+                router.navigate("/frame-select");
+            }
+        );
+
         selectButton.mount();
+        nextButton.mount();
 
         this.fileInput.addEventListener("change", () => {
             const file = this.fileInput.files?.[0];
             if (!file) return;
+
+            app.selectedImageValue = file;
 
             const reader = new FileReader();
             reader.onload = () => {
