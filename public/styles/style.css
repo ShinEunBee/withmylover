@@ -1,0 +1,50 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
+
+:root {
+  --primary: #1673ff;
+  --primary-hover: #1254b8;
+  --text: #111827;
+  --border: #e5e7eb;
+  --bg: #ffffff;
+}
+
+html {
+  background-color: rgb(241, 241, 241);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-family: Pretendard;
+}
+
+button {
+  cursor: pointer;
+}
+
+.vertical-page {
+  background-color: var(--bg);
+  display: flex;
+  width: 100%;
+  max-width: 550px;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.main {
+  flex: 1;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 10px;
+  font-size: 16px;
+  border: 0px;
+  margin-top: 15px;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}

@@ -10,7 +10,7 @@ export class Button {
         root: HTMLElement,
         text: string,
         onClick: () => void,
-        className?: string
+        className: string = "btn btn-primary"
     ) {
         this.root = root;
         this.text = text;
@@ -19,7 +19,7 @@ export class Button {
         
         this.button = document.createElement("button");
         this.button.textContent = this.text;
-        if (this.className) this.button.classList.add(this.className);
+        if (this.className) this.button.className = this.className;
     }
 
     mount() {
