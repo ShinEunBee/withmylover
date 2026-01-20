@@ -1,9 +1,11 @@
 import type { App } from "../app/app";
 import { Page } from "../app/page";
+import type { Router } from "../app/router";
+import { Button } from "../components/button";
 import { FrameItem } from "../components/frameItem";
 
 export class FrameSelectPage extends Page {
-    constructor(app: App) {
+    constructor(router: Router, app: App) {
         const container = document.createElement("div");
 
         const selectedImage = app.selectedImageValue;
@@ -25,7 +27,7 @@ export class FrameSelectPage extends Page {
         super(container);
 
         const frames = [
-            { id: "frame1", src: "/frames/frame1.png" },
+            { id: "frame_1", src: "../frames/frame_1.png" },
             { id: "frame2", src: "/frames/frame2.png" },
         ];
 
@@ -36,5 +38,16 @@ export class FrameSelectPage extends Page {
             });
             item.mount(container);
         });
+
+
+        const nextButton = new Button(
+            this.tag,
+            "다음으로",
+            () => {
+                router.navigate("/result");
+            }
+        )
+
+        nextButton.mount();
     }
 }

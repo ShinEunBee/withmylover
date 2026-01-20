@@ -5,6 +5,7 @@ import { ErrorPage } from "./pages/ErrorPage";
 import { FrameSelectPage } from "./pages/FrameSelectPage";
 import { HomePage } from "./pages/HomePage";
 import { PhotoSelectPage } from "./pages/PhotoSelectPage";
+import { ResultPage } from "./pages/ResultPage";
 
 const root = document.getElementById("app");
 if (!(root instanceof HTMLElement)) {
@@ -17,7 +18,8 @@ const app = new App();
 router.add("/", () => new HomePage(router));
 router.add("/about", () => new AboutPage());
 router.add("/photo-select", () => new PhotoSelectPage(router, app));
-router.add("/frame-select", () => new FrameSelectPage(app));
+router.add("/frame-select", () => new FrameSelectPage(router, app));
+router.add("/result", () => new ResultPage(app));
 
 router.route(location.pathname);
 

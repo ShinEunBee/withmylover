@@ -12,7 +12,7 @@ export class App {
     }
 
     get selectedFrameValue() {
-        return this.selectedFrame;
+        return "/public/frames/"+this.selectedFrame+".png";
     }
 
     set selectedFrameValue(image: string | null) {
