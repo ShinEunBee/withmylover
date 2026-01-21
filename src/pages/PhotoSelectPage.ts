@@ -2,6 +2,7 @@ import { Page } from "../app/page";
 import { Button } from "../components/button";
 import type { Router } from "../app/router";
 import type { App } from "../app/app";
+import { imageCrop } from "../utils/imageCrop";
 
 export class PhotoSelectPage extends Page {
     private fileInput: HTMLInputElement;
@@ -49,7 +50,20 @@ export class PhotoSelectPage extends Page {
             const file = this.fileInput.files?.[0];
             if (!file) return;
 
-            app.selectedImageValue = file;
+            const image = new Image();
+            image.src = URL.createObjectURL(file);
+
+            image.onload = async () => {
+                const croppedBlob = await imageCrop(image);
+
+                const croppedFile = new File(
+                    [croppedBlob],
+                    "cropped.png",
+                    { type: "image/png", lastModified: Date.now() }
+                );
+
+                app.selectedImageValue = croppedFile;
+            };
 
             const reader = new FileReader();
             reader.onload = () => {

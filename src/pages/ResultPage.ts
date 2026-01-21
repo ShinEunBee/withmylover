@@ -1,5 +1,5 @@
 import { Page } from "../app/page";
-import { composeImage } from "../utils/composer";
+import { composeImage } from "../utils/composeImage";
 import { App } from "../app/app";
 
 export class ResultPage extends Page {
