@@ -3,6 +3,7 @@ import { Button } from "../components/button";
 import type { Router } from "../app/router";
 import type { App } from "../app/app";
 import { imageCrop } from "../utils/imageCrop";
+import { Header } from "../components/header";
 
 export class PhotoSelectPage extends Page {
     private fileInput: HTMLInputElement;
@@ -10,19 +11,29 @@ export class PhotoSelectPage extends Page {
 
     constructor(router: Router, app: App) {
         const container = document.createElement("div");
+        container.className = "app-container";
 
         container.innerHTML = `
-            <h2>사진을 등록하세요!</h2>
+            <div class="main-container">
+                <h2>사진을 등록하세요!</h2>
 
-            <input type="file" accept="image/*" style="display:none" />
+                <input type="file" accept="image/*" style="display:none" />
 
-            <div>
-                <p>미리보기</p>
-                <img style="max-width: 100%; border: 1px solid #ccc;" />
+                <div>
+                    <p>미리보기</p>
+                    <img style="max-width: 100%; border: 1px solid #ccc;" />
+                </div>
             </div>
         `;
 
         super(container);
+
+        const header = new Header(
+            this.tag,
+            "사진 선택"
+        );
+
+        header.mount();
 
         this.fileInput = container.querySelector("input")!;
         this.previewImg = container.querySelector("img")!;
@@ -35,8 +46,11 @@ export class PhotoSelectPage extends Page {
             }
         );
 
+        const section = document.createElement("section");
+        section.className = "btn-container";
+
         const nextButton = new Button(
-            this.tag,
+            section,
             "다음으로",
             () => {
                 router.navigate("/frame-select");
@@ -44,6 +58,8 @@ export class PhotoSelectPage extends Page {
         );
 
         selectButton.mount();
+
+        container.append(section);
         nextButton.mount();
 
         this.fileInput.addEventListener("change", () => {

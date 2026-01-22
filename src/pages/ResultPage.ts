@@ -14,9 +14,7 @@ export class ResultPage extends Page {
             return;
         }
 
-
         container.innerHTML = `
-            <h2>완료!</h2>
             <div class="result">
                 <canvas></canvas>
             </div>
