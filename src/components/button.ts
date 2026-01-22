@@ -10,7 +10,7 @@ export class Button {
         root: HTMLElement,
         text: string,
         onClick: () => void,
-        className: string = "btn btn-primary"
+        className: string = "btn-primary"
     ) {
         this.root = root;
         this.text = text;

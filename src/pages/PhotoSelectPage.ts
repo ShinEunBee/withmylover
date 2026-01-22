@@ -40,10 +40,11 @@ export class PhotoSelectPage extends Page {
 
         const selectButton = new Button(
             container,
-            "사진 선택하기",
+            "+",
             () => {
                 this.fileInput.click();
-            }
+            },
+            "btn-selected"
         );
 
         const section = document.createElement("section");

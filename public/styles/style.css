@@ -1,6 +1,7 @@
 :root {
   --primary: #1673ff;
   --primary-hover: #1254b8;
+  --selected: rgb(176, 176, 176);
   --text: #111827;
   --border: #e5e7eb;
   --bg: #ffffff;
@@ -25,13 +26,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #e5e7eb;
+  height: 100%;
+}
+
+#app {
+  width: 550px;
+  min-height: 100vh;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
 }
 
 .app-container {
-  width: 550px;
-  min-height: 90vh;
-  border: 1px solid lightgray;
-  display: flex;
+   display: flex;
   flex-direction: column;
 }
 
@@ -57,17 +66,39 @@ header {
   padding: 10px 10px;
 }
 
-.btn {
+.btn-primary {
   width: 100%;
   height: 100%;
   border-radius: 10px;
   font-size: 16px;
   border: none;
-}
-
-.btn-primary {
   background-color: var(--primary);
   color: white;
+}
+
+.btn-selected {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+
+  border: none;
+  background: var(--selected);
+  color: white;
+
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .frame-item {
