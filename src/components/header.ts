@@ -11,8 +11,8 @@ export class Header {
     }
 
     private createLayout(text: string) {
-        const back = document.createElement("button");
-        back.textContent = "◀";
+        const back = document.createElement("div");
+        back.textContent = "";
 
         const title = document.createElement("h1");
         title.textContent = text;

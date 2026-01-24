@@ -58,6 +58,12 @@ header {
   border-bottom: 1px solid var(--border);
 }
 
+header h1 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 600;
+}
+
 .main-container {
   flex: 1;
   overflow-y: auto;
