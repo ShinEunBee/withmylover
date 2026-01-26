@@ -37,13 +37,12 @@ export class FrameSelectPage extends Page {
 
         const frames = [
             { id: "frame_1", src: "../frames/frame_1.png" },
-            { id: "frame2", src: "/frames/frame2.png" },
+            { id: "frame_2", src: "../frames/frame_2.png" },
         ];
 
         frames.forEach(frame => {
             const item = new FrameItem(frame, () => {
                 app.selectedFrameValue = frame.id;
-                console.log("선택됨:", frame.id);
             });
             item.mount(container);
         });

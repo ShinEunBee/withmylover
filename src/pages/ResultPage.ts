@@ -15,15 +15,23 @@ export class ResultPage extends Page {
         }
 
         container.innerHTML = `
-            <div class="result">
+           <div class="loading">
+		          <div class="spinner"></div>
+		          <p>탑로더 끼우는 중 ...</p>
+		        </div>
+		
+		        <div class="result hidden">
                 <canvas></canvas>
             </div>
         `;
 
         super(container);
 
+        const loadingEl = container.querySelector(".loading")!;
+        const resultEl = container.querySelector(".result")!;
         const canvas = container.querySelector("canvas")!;
         const ctx = canvas.getContext("2d")!;
+
         const userImage = new Image();
         const frameImage = new Image();
 
@@ -44,11 +52,16 @@ export class ResultPage extends Page {
                 };
             }),
         ]).then(() => {
-            console.log("모두 로드 완료!");
-            const composed = composeImage(userImage, frameImage, 550, 850);
-            canvas.width = composed.width;
-            canvas.height = composed.height;
-            ctx.drawImage(composed, 0, 0);
+            setTimeout(() => {
+                const composed = composeImage(userImage, frameImage, 550, 850);
+
+                canvas.width = composed.width;
+                canvas.height = composed.height;
+                ctx.drawImage(composed, 0, 0);
+
+                loadingEl.remove();
+                resultEl.classList.remove("hidden");
+            }, 800);
         });
 
     }
