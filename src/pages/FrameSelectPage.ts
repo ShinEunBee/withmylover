@@ -7,6 +7,8 @@ import { Header } from "../components/header";
 
 export class FrameSelectPage extends Page {
     constructor(router: Router, app: App) {
+        let selectedItem: FrameItem | null = null;
+
         const container = document.createElement("div");
         container.className = "app-container";
 
@@ -41,10 +43,22 @@ export class FrameSelectPage extends Page {
         ];
 
         frames.forEach(frame => {
-            const item = new FrameItem(frame, () => {
-                app.selectedFrameValue = frame.id;
+            const item = new FrameItem(frame, (clickedItem) => {
+                app.selectedFrameValue = clickedItem.frameId;
+
+                if (selectedItem && selectedItem !== clickedItem) {
+                    selectedItem.deselect();
+                }
+
+                clickedItem.select();
+                selectedItem = clickedItem;
             });
-            item.mount(container);
+
+            const selectContainer = document.createElement("div");
+            selectContainer.className = "frame-item";
+
+            item.mount(selectContainer);
+            container.append(selectContainer);
         });
 
         const section = document.createElement("section");
@@ -57,7 +71,7 @@ export class FrameSelectPage extends Page {
                 router.navigate("/result");
             }
         );
-        
+
         container.append(section);
         nextButton.mount();
 

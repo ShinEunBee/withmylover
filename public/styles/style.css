@@ -179,13 +179,13 @@ button {
   display: block;
 }
 
-.frame-item.is-selected {
+.frame-item .is-selected {
   border-color: var(--primary);
   transform: scale(1.03);
   box-shadow: 0 6px 16px rgba(22, 115, 255, 0.25);
 }
 
-.frame-item.is-selected::after {
+.frame-item .is-selected::after {
   content: "✓";
   position: absolute;
   top: 8px;
