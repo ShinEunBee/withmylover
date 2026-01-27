@@ -16,7 +16,8 @@ export class PhotoSelectPage extends Page {
         container.innerHTML = `
             <div class="main-container">
                 <h2>사진을 등록하세요!</h2>
-
+                <div id="select-btn-container"></div>
+	
                 <input type="file" accept="image/*" style="display:none" />
 
                 <div>
@@ -39,7 +40,7 @@ export class PhotoSelectPage extends Page {
         this.previewImg = container.querySelector("img")!;
 
         const selectButton = new Button(
-            container,
+            container.querySelector("#select-btn-container")!,
             "사진을 선택하세요!",
             () => {
                 this.fileInput.click();
@@ -80,11 +81,13 @@ export class PhotoSelectPage extends Page {
                 );
 
                 app.selectedImageValue = croppedFile;
+
             };
 
             const reader = new FileReader();
             reader.onload = () => {
                 this.previewImg.src = reader.result as string;
+                selectButton.setText("사진 다시 선택하기");
             };
             reader.readAsDataURL(file);
         });

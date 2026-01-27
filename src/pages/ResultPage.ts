@@ -5,6 +5,7 @@ import { App } from "../app/app";
 export class ResultPage extends Page {
     constructor(app: App) {
         const container = document.createElement("div");
+        container.className = "app-container";
 
         const selectedImage = app.selectedImageValue;
 

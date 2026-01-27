@@ -16,7 +16,7 @@ export class Button {
         this.text = text;
         this.onClick = onClick;
         this.className = className;
-        
+
         this.button = document.createElement("button");
         this.button.textContent = this.text;
         if (this.className) this.button.className = this.className;
@@ -30,5 +30,9 @@ export class Button {
     unmount() {
         this.button.removeEventListener("click", this.onClick);
         this.root.removeChild(this.button);
+    }
+
+    setText(text: string) {
+        this.button.innerText = text;
     }
 }
