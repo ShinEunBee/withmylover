@@ -41,9 +41,9 @@ body {
   background-color: var(--bg);
 }
 
-@media (max-width: 769px) {
+@media (min-width: 769px) {
   .app-container {
-    max-width: 800px;
+    max-width: 600px;
   }
 }
 
