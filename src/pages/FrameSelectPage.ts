@@ -43,22 +43,15 @@ export class FrameSelectPage extends Page {
         ];
 
         frames.forEach(frame => {
-            const item = new FrameItem(frame, (clickedItem) => {
+            const item = new FrameItem(frame, clickedItem => {
                 app.selectedFrameValue = clickedItem.frameId;
 
-                if (selectedItem && selectedItem !== clickedItem) {
-                    selectedItem.deselect();
-                }
-
+                selectedItem?.deselect();
                 clickedItem.select();
                 selectedItem = clickedItem;
             });
 
-            const selectContainer = document.createElement("div");
-            selectContainer.className = "frame-item";
-
-            item.mount(selectContainer);
-            container.append(selectContainer);
+            item.mount(container);
         });
 
         const section = document.createElement("section");

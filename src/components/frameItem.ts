@@ -4,29 +4,35 @@ type Frame = {
 };
 
 export class FrameItem {
-    private element: HTMLImageElement;
+    private root: HTMLDivElement;
+    private img: HTMLImageElement;
     readonly frameId: string;
 
     constructor(frame: Frame, onSelect: (item: FrameItem) => void) {
         this.frameId = frame.id;
 
-        this.element = document.createElement("img");
-        this.element.src = frame.src;
-        this.element.addEventListener("click", () => {
+        this.root = document.createElement("div");
+        this.root.className = "frame-item";
+
+        this.img = document.createElement("img");
+        this.img.src = frame.src;
+
+        this.root.appendChild(this.img);
+
+        this.root.addEventListener("click", () => {
             onSelect(this);
         });
     }
 
     mount(parent: HTMLElement) {
-        parent.appendChild(this.element);
+        parent.appendChild(this.root);
     }
 
     select() {
-        this.element.classList.add("is-selected");
+        this.root.classList.add("is-selected");
     }
 
     deselect() {
-        this.element.classList.remove("is-selected");
+        this.root.classList.remove("is-selected");
     }
-
 }
