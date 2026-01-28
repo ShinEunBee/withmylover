@@ -20,13 +20,13 @@ export class FrameSelectPage extends Page {
             return;
         }
 
-        const imageUrl = URL.createObjectURL(selectedImage);
+        // const imageUrl = URL.createObjectURL(selectedImage);
 
-        container.innerHTML = `
-            <div>
-                <img src="${imageUrl}" style="max-width: 100%; border: 1px solid #ccc;" />
-            </div>
-        `;
+        // container.innerHTML = `
+        //     <div>
+        //         <img src="${imageUrl}" style="max-width: 100%; border: 1px solid #ccc;" />
+        //     </div>
+        // `;
 
         super(container);
 
@@ -42,6 +42,11 @@ export class FrameSelectPage extends Page {
             { id: "frame_2", src: "../frames/frame_2.png" },
         ];
 
+        const frameContainer = document.createElement("div");
+        frameContainer.className = "frame-list";
+
+        container.append(frameContainer);
+
         frames.forEach(frame => {
             const item = new FrameItem(frame, clickedItem => {
                 app.selectedFrameValue = clickedItem.frameId;
@@ -51,7 +56,7 @@ export class FrameSelectPage extends Page {
                 selectedItem = clickedItem;
             });
 
-            item.mount(container);
+            item.mount(frameContainer);
         });
 
         const section = document.createElement("section");
