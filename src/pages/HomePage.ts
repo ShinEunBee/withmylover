@@ -1,33 +1,34 @@
 import { Page } from "../app/page";
 import type { Router } from "../app/router";
 import { Button } from "../components/button";
-import { Header } from "../components/header";
-
 export class HomePage extends Page {
     constructor(router: Router) {
         const container = document.createElement("div");
-        container.className = "app-container";
+        container.className = "home";
+
+        container.innerHTML = `
+		        <h1 class="home-title">
+                    아맞다!<br />
+                    예절샷
+                </h1>
+
+                <p class="home-desc">
+                    1. 사진 고르기<br />
+                    2. 프레임 고르기<br />
+                    3. 예절샷 찍기
+                </p>
+        `;
+
         super(container);
 
-        const header = new Header(
-            this.tag,
-            "Home"
-        );
-
-        header.mount();
-
-        const section = document.createElement("section");
-        section.className = "btn-container";
-
         const startButton = new Button(
-            section,
+            container,
             "시작하기",
             () => {
                 router.navigate("/photo-select");
-            }
+            },
+            "home-btn"
         );
-
-        container.append(section);
         startButton.mount();
     }
 }
