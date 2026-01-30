@@ -10,7 +10,10 @@ export class ResultPage extends Page {
         const selectedImage = app.selectedImageValue;
 
         if (!selectedImage) {
-            container.innerHTML = `<p>선택된 사진이 없습니다. 사진 선택 페이지로 이동해주세요.</p>`;
+            container.innerHTML = `<div class="empty-state">
+                                        <div class="empty-icon">📷</div>
+                                        <h2>선택된 사진이 없어요</h2>
+                                    </div>`;
             super(container);
             return;
         }
