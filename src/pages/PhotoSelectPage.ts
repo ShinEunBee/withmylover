@@ -81,6 +81,7 @@ export class PhotoSelectPage extends Page {
 
                 app.selectedImageValue = croppedFile;
 
+                URL.revokeObjectURL(image.src);
             };
 
             const reader = new FileReader();
