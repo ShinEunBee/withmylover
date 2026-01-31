@@ -163,6 +163,7 @@ button {
   gap: 16px;
   justify-items: center;
   align-items: center;
+  padding: 20px;
 }
 
 .frame-item {

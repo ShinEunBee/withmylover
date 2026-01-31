@@ -21,7 +21,6 @@ export class PhotoSelectPage extends Page {
                 <input type="file" accept="image/*" style="display:none" />
 
                 <div>
-                    <p>미리보기</p>
                     <img style="max-width: 100%; border: 1px solid #ccc;" />
                 </div>
             </div>
