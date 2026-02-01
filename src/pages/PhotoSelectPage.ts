@@ -63,14 +63,24 @@ export class PhotoSelectPage extends Page {
         container.append(section);
         nextButton.mount();
 
-        this.fileInput.addEventListener("change", () => {
+        this.fileInput.addEventListener("change", async () => {
             const file = this.fileInput.files?.[0];
             if (!file) return;
 
-            const image = new Image();
-            image.src = URL.createObjectURL(file);
+            const previewUrl = URL.createObjectURL(file);
+            this.previewImg.src = previewUrl;
+            selectButton.setText("이미지 처리 중...");
 
-            image.onload = async () => {
+            const image = new Image();
+            const processUrl = URL.createObjectURL(file);
+            image.src = processUrl;
+
+            await new Promise((resolve, reject) => {
+                image.onload = resolve;
+                image.onerror = reject;
+            });
+
+            try {
                 const croppedBlob = await imageCrop(image);
 
                 const croppedFile = new File(
@@ -80,16 +90,11 @@ export class PhotoSelectPage extends Page {
                 );
 
                 app.selectedImageValue = croppedFile;
-
-                URL.revokeObjectURL(image.src);
-            };
-
-            const reader = new FileReader();
-            reader.onload = () => {
-                this.previewImg.src = reader.result as string;
                 selectButton.setText("사진 다시 선택하기");
-            };
-            reader.readAsDataURL(file);
+
+            } finally {
+                URL.revokeObjectURL(processUrl);
+            }
         });
     }
 }
