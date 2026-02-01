@@ -243,6 +243,12 @@ button {
   }
 }
 
+canvas {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .result {
   opacity: 1;
   transform: scale(1);
