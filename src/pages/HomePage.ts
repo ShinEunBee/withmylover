@@ -12,11 +12,11 @@ export class HomePage extends Page {
                     예절샷
                 </h1>
 
-                <p class="home-desc">
+                <h2 class="home-desc">
                     1. 사진 고르기<br />
                     2. 프레임 고르기<br />
                     3. 예절샷 찍기
-                </p>
+                </h2>
         `;
 
         super(container);
