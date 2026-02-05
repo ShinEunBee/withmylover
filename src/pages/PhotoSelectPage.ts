@@ -10,7 +10,7 @@ export class PhotoSelectPage extends Page {
     private previewImg: HTMLImageElement;
 
     constructor(router: Router, app: App) {
-        const container = document.createElement("div");
+        const container = document.createElement("main");
         container.className = "app-container";
 
         container.innerHTML = `
@@ -21,7 +21,7 @@ export class PhotoSelectPage extends Page {
                 <input type="file" accept="image/*" style="display:none" />
 
                 <div>
-                    <img style="max-width: 100%; border: 1px solid #ccc;" />
+                    <img style="max-width: 100%; border: 1px solid #ccc;"/>
                 </div>
             </div>
         `;

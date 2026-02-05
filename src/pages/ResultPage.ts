@@ -45,13 +45,11 @@ export class ResultPage extends Page {
         Promise.all([
             new Promise<void>((resolve) => {
                 userImage.onload = () => {
-                    console.log("userImage loaded");
                     resolve();
                 };
             }),
             new Promise<void>((resolve) => {
                 frameImage.onload = () => {
-                    console.log("frameImage loaded");
                     resolve();
                 };
             }),

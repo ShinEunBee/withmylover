@@ -16,6 +16,7 @@ export class FrameItem {
 
         this.img = document.createElement("img");
         this.img.src = frame.src;
+        this.img.alt = "프레임 미리보기"
 
         this.root.appendChild(this.img);
 

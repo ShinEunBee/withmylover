@@ -24,14 +24,6 @@ export class FrameSelectPage extends Page {
             return;
         }
 
-        // const imageUrl = URL.createObjectURL(selectedImage);
-
-        // container.innerHTML = `
-        //     <div>
-        //         <img src="${imageUrl}" style="max-width: 100%; border: 1px solid #ccc;" />
-        //     </div>
-        // `;
-
         super(container);
 
         const header = new Header(
@@ -77,6 +69,5 @@ export class FrameSelectPage extends Page {
         container.append(section);
         nextButton.mount();
 
-        nextButton.mount();
     }
 }
