@@ -21,7 +21,7 @@ export class PhotoSelectPage extends Page {
                 <input type="file" accept="image/*" style="display:none" />
 
                 <div>
-                    <img style="max-width: 100%; border: 1px solid #ccc;"/>
+                    <img style="max-width: 100%; border: 1px solid #ccc;" alt="선택 사진 미리보기"/>
                 </div>
             </div>
         `;
@@ -82,6 +82,8 @@ export class PhotoSelectPage extends Page {
 
             try {
                 const croppedBlob = await imageCrop(image);
+
+                image.classList.add("loaded");
 
                 const croppedFile = new File(
                     [croppedBlob],

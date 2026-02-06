@@ -364,3 +364,11 @@ canvas {
   font-weight: 700;
   margin-bottom: 8px;
 }
+
+img {
+  opacity: 0;
+}
+
+img.loaded {
+  opacity: 1;
+}
